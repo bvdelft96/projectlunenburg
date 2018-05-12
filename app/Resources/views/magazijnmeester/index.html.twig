@@ -1,0 +1,44 @@
+{% extends 'layout/default.html.twig' %}
+
+{% block title %}Magazijnmeester - Lunenburg{% endblock %}
+
+{% block content %}
+    
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Magazijnmeester</h1>
+            <p>U bent ingelogd als een magazijnmeester.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Artikeloverzicht</h2>
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Omschrijving</th>
+                        <th scope="col">magazijnlocatie</th>
+                        <th scope="col">voorraadaantal</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for artikel in artikelen %}
+                    <tr>
+                        <th scope="row">{{ artikel.artikelnummer }}</th>
+                        <td>{{ artikel.omschrijving }}</td>
+                        <td>{{ artikel.magazijnlocatie }}</td>
+                        <td>{{ artikel.voorraadaantal }}</td>
+                        <td><a class="btn btn-sm btn-primary" href="{{ path('magazijnmeesterartikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzigen</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}

@@ -2,9 +2,16 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Lunenburg{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/fontawesome-all.min.css') }}" rel="stylesheet">
+        <style>
+            /* Move down content because we have a fixed navbar that is 3.5rem tall */
+            body {
+                padding-top: 3.5rem;
+            }
+        </style>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>

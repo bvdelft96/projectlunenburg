@@ -15,16 +15,6 @@ use AppBundle\Form\Type\ArtikelMagazijnmeesterType;
 
 class ArtikelController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
 
     /** 
     * @Route ("/inkoper/artikel/nieuw ", name="artikelnieuw")
@@ -42,7 +32,10 @@ class ArtikelController extends Controller
             return $this->redirect($this->generateurl("artikelnieuw"));
         }
 
-        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+        return $this->render('form.html.twig', [
+            'form' => $form->createView(),
+            'title' => 'Artikel toevoegen',
+        ]);
     }
 
     /** 
@@ -60,7 +53,10 @@ class ArtikelController extends Controller
             return $this->redirect($this->generateurl("inkoperartikelwijzigen", array("artikelnummer" => $bestaandeArtikel->getArtikelnummer())));
         }
 
-        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+        return $this->render('form.html.twig', [
+            'form' => $form->createView(),
+            'title' => 'Artikel wijzigen',
+        ]);
     }
 
     /** 
@@ -78,17 +74,33 @@ class ArtikelController extends Controller
             return $this->redirect($this->generateurl("magazijnmeesterartikelwijzigen", array("artikelnummer" => $bestaandeArtikel->getArtikelnummer())));
         }
 
-        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+        return $this->render('form.html.twig', [
+            'form' => $form->createView(),
+            'title' => 'Artikel wijzigen',
+        ]);
     }
 
-
-    /** 
-    * @Route ("/inkoper/artikel/alle", name="inkoperalleartikelen")
-    */
-    public function alleInkoperartikelen(Request $request){
+    /**
+     * @Route ("/inkoper", name="inkoper")
+     */
+    public function inkoperHomepage(Request $request){
         $artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
-        
-        return new Response($this->render('artikelinkoper.html.twig', array('artikelen' => $artikelen)));
+
+        return $this->render('inkoper/index.html.twig', [
+            'artikelen' => $artikelen
+        ]);
+
+    }
+
+    /**
+     * @Route ("/magazijnmeester", name="magazijnmeester")
+     */
+    public function magazijnmeesterHomepage(Request $request){
+        $artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+
+        return $this->render('magazijnmeester/index.html.twig', [
+            'artikelen' => $artikelen
+        ]);
 
     }
 }
