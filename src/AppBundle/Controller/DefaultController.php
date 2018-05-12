@@ -34,9 +34,9 @@ class DefaultController extends Controller
     /**
      * @Route("/logout", name="security_logout")
      */
-    public function logoutAction()
+    public function logoutAction(Request $request)
     {
-        throw new \Exception('this should not be reached!');
+        return new Response($this->renderView('logout.html.twig'), 401);
     }
 
 }

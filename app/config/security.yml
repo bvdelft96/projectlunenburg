@@ -20,6 +20,7 @@ security:
     access_control:
         - { path: '^/inkoper/*', roles: [ROLE_INKOPER] }
         - { path: '^/magazijnmeester/*', roles: [ROLE_MAGAZIJNMEESTER] }
+        - { path: '^/logout', roles: [IS_AUTHENTICATED_ANONYMOUSLY] }
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
@@ -40,6 +41,3 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
-
-            logout:
-                path: /logout
