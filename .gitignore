@@ -1,5 +1,6 @@
 /.web-server-pid
 /build/
+/.idea/
 /phpunit.xml
 /var/*
 !/var/cache
