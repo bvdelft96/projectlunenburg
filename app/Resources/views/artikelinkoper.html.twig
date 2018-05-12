@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1>Artikeloverzicht</h1>
+	<ol> 
+	{% for artikel in artikelen %}
+			<li>
+
+			{{ artikel.artikelnummer }}, {{ artikel.omschrijving }}, {{ artikel.specificaties }}, {{ artikel.magazijnlocatie }}, 
+			{{ artikel.inkoopprijs }}, {{ artikel.vervangendeArtikel }}, {{ artikel.vervangendeArtikel }}, {{ artikel.voorraadaantal }}, 
+			{{ artikel.vervangendeArtikel }}, {{ artikel.minimumVoorraad }}, {{ artikel.voorraadaantal }}, {{ artikel.bestelserie }}
+
+			<a href="{{ path('inkoperartikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzigen</a>
+
+
+
+			</li>
+	{% endfor %}
+	<ol>
+{% endblock %}
+

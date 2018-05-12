@@ -1,0 +1,41 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    providers:
+        in_memory:
+            memory:
+                users:
+                    inkoper:
+                        password: inkoper
+                        roles: 'ROLE_INKOPER'
+
+                    magazijnmeester:
+                        password: magazijnmeester
+                        roles: 'ROLE_MAGAZIJNMEESTER'
+
+                    testgebruiker:
+                        password: test
+                        roles: 'ROLE_GEBRUIKER'
+
+    access_control:
+        - { path: '^/inkoper/*', roles: [ROLE_INKOPER] }
+        - { path: '^/magazijnmeester/*', roles: [ROLE_MAGAZIJNMEESTER] }
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            # activate different ways to authenticate
+
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~
