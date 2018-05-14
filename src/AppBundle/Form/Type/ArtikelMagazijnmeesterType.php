@@ -19,27 +19,8 @@ class ArtikelMagazijnmeesterType extends AbstractType
 		//gebruiken wat je nodig hebt, de id hoeft er niet bij als deze auto increment is
 
         $builder
-            ->add('omschrijving', TextType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('specificaties', TextType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
             ->add('magazijnlocatie', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
-        $builder
-            ->add('inkoopprijs', MoneyType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('vervangendeArtikel', TextType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('minimumVoorraad', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('voorraadaantal', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-
 
 
 		//zie
