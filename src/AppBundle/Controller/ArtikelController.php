@@ -26,14 +26,14 @@ class ArtikelController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $nieuweArtikel->bestelserie = $nieuweArtikel->minimumVoorraad - $nieuweArtikel->voorraadaantal;
+            $nieuwArtikel->setBestelserie($nieuwArtikel->getMinimumvoorraad() - $nieuwArtikel->getVoorraadaantal());
             $em->persist($nieuweArtikel);
             $em->flush();
-            return $this->redirect($this->generateurl("artikelnieuw"));
+            return $this->redirect($this->generateurl("a
+            'form' => $form->createView(),artikelnieuw"));
         }
 
         return $this->render('form.html.twig', [
-            'form' => $form->createView(),
             'title' => 'Artikel toevoegen',
         ]);
     }

@@ -22,6 +22,8 @@
                         <th scope="col">Omschrijving</th>
                         <th scope="col">Magazijnlocatie</th>
                         <th scope="col">Voorraadaantal</th>
+                        <th scope="col">Minimum voorraad</th>
+                        <th scope="col">Bestelserie</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -32,6 +34,8 @@
                         <td>{{ artikel.omschrijving }}</td>
                         <td>{{ artikel.magazijnlocatie }}</td>
                         <td>{{ artikel.voorraadaantal }}</td>
+                        <td>{{ artikel.minimumVoorraad }}</td>
+                        <td>{{ artikel.Bestelserie }}</td>
                         <td><a class="btn btn-sm btn-primary" href="{{ path('magazijnmeesterartikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Locatie wijzigen</a></td>
                     </tr>
                     {% endfor %}
