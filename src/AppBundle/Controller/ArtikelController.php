@@ -26,7 +26,7 @@ class ArtikelController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $nieuwArtikel->setBestelserie($nieuwArtikel->getMinimumvoorraad() - $nieuwArtikel->getVoorraadaantal());
+            $nieuweArtikel->setBestelserie($nieuweArtikel->getMinimumvoorraad() - $nieuweArtikel->getVoorraadaantal());
             $em->persist($nieuweArtikel);
             $em->flush();
             return $this->redirect($this->generateurl("artikelnieuw"));
