@@ -19,7 +19,7 @@ class Artikel
     /**
      * @var string
      *
-     * @ORM\Column(name="artikelnummer", type="string", length=20, unique=true)
+     * @ORM\Column(name="artikelnummer", type="string", length=10, unique=true)
      * @ORM\Id
      */
     private $artikelnummer;
@@ -327,4 +327,3 @@ class Artikel
         return $this->bestelserie;
     }
 }
-
