@@ -29,11 +29,11 @@ class ArtikelController extends Controller
             $nieuwArtikel->setBestelserie($nieuwArtikel->getMinimumvoorraad() - $nieuwArtikel->getVoorraadaantal());
             $em->persist($nieuweArtikel);
             $em->flush();
-            return $this->redirect($this->generateurl("a
-            'form' => $form->createView(),artikelnieuw"));
+            return $this->redirect($this->generateurl("artikelnieuw"));
         }
 
         return $this->render('form.html.twig', [
+            'form' => $form->createView(),
             'title' => 'Artikel toevoegen',
         ]);
     }
