@@ -51,6 +51,11 @@ class ArtikelController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($bestaandeArtikel->getMinimumvoorraad() > $bestaandeArtikel->getVoorraadaantal()){
+                $bestaandeArtikel->setBestelserie($bestaandeArtikel->getMinimumvoorraad() - $bestaandeArtikel->getVoorraadaantal());
+            } else{
+                $bestaandeArtikel->setBestelserie(0);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($bestaandeArtikel);
             $em->flush();

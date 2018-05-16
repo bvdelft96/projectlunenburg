@@ -36,9 +36,9 @@ class ArtikelInkoperType extends AbstractType
         $builder
             ->add('voorraadaantal', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
         ;
-        $builder
-            ->add('bestelserie', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
+        //$builder
+            //->add('bestelserie', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
+        //;
 
 
 
