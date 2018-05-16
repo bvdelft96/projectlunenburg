@@ -33,7 +33,7 @@ class ArtikelController extends Controller
             }
             $em->persist($nieuweArtikel);
             $em->flush();
-            return $this->redirect($this->generateurl("artikelnieuw"));
+            return $this->redirectToRoute('inkoper');
         }
 
         return $this->render('form.html.twig', [
@@ -59,7 +59,7 @@ class ArtikelController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($bestaandeArtikel);
             $em->flush();
-            return $this->redirect($this->generateurl("inkoperartikelwijzigen", array("artikelnummer" => $bestaandeArtikel->getArtikelnummer())));
+            return $this->redirectToRoute('inkoper');
         }
 
         return $this->render('form.html.twig', [
@@ -80,12 +80,12 @@ class ArtikelController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($bestaandeArtikel);
             $em->flush();
-            return $this->redirect($this->generateurl("magazijnmeesterartikelwijzigen", array("artikelnummer" => $bestaandeArtikel->getArtikelnummer())));
+            return $this->redirectToRoute('magazijnmeester');
         }
 
         return $this->render('form.html.twig', [
             'form' => $form->createView(),
-            'title' => 'Artikel wijzigen',
+            'title' => 'Locatiecode wijzigen',
         ]);
     }
 
