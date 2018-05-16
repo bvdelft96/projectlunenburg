@@ -22,13 +22,13 @@ class ArtikelInkoperType extends AbstractType
             ->add('omschrijving', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
-            ->add('specificaties', TextType::class) //naam is b.v. een attribuut of variabele van klant
+            ->add('specificaties', TextType::class, array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
             ->add('inkoopprijs', MoneyType::class) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
-            ->add('vervangendeArtikel', TextType::class) //naam is b.v. een attribuut of variabele van klant
+            ->add('vervangendeArtikel', TextType::class, array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
             ->add('minimumVoorraad', IntegerType::class) //naam is b.v. een attribuut of variabele van klant

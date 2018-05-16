@@ -20,8 +20,14 @@ class Artikel
      /**
      * @var string
      *
-     * @ORM\Column(name="artikelnummer", type="integer", length=10, unique=true)
+     * @ORM\Column(name="artikelnummer", type="integer", length=20, unique=true)
      * @ORM\Id
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 10,
+     *      minMessage = "Minimaal 10 karakters",
+     *      maxMessage = "Maximaal 10 karakters"
+     *)
      */
     private $artikelnummer;
 
