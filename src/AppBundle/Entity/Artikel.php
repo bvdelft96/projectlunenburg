@@ -17,6 +17,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Artikel
 {
 
+    //Mapping naar de database
+
      /**
      * @var string
      *
@@ -117,7 +119,7 @@ class Artikel
      */
     private $bestelserie;
 
-    //**************************************************Functies hieronder!*********************************
+    //**************************************************Set/Get Functies hieronder!*********************************
 
 
     /**

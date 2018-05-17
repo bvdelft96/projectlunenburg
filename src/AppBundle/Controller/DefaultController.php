@@ -12,6 +12,9 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class DefaultController extends Controller
 {
+
+    //Functie om naar de homepagina te gaan met een redirect naar de homepagina.
+
     /**
      * @Route("/", name="homepage")
      */
@@ -30,6 +33,8 @@ class DefaultController extends Controller
             return $this->render('default/index.html.twig');
         }
     }
+
+    //Functie om uit te loggen.
 
     /**
      * @Route("/logout", name="security_logout")
