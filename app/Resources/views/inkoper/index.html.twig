@@ -4,19 +4,16 @@
 
 {% block content %}
 
-    <div class="jumbotron">
+    <div class="page-header">
         <div class="container">
-            <h1 class="display-3">Inkoper</h1>
-            <p>U bent ingelogd als een inkoper.</p>
-            <a class="btn btn-outline-success" href="{{ url('artikelnieuw') }}"><i class="fas fa-plus"></i> Artikel toevoegen</a>
+            <h2 class="text-center"> </h2>
         </div>
     </div>
 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Artikeloverzicht</h2>
-                <table class="table table-sm">
+                <table class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -39,7 +36,7 @@
                         <td>{{ artikel.specificaties }}</td>
                         <td>{{ artikel.magazijnlocatie }}</td>
                         <td>{{ artikel.inkoopprijs }}</td>
-                        <td>{{ artikel.vervangendeArtikel }}</td>
+                        <td>{{ artikel.vervangendArtikel }}</td>
                         <td>{{ artikel.minimumVoorraad }}</td>
                         <td>{{ artikel.voorraadaantal }}</td>
                         <td>{{ artikel.bestelserie }}</td>

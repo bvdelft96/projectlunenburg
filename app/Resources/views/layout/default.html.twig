@@ -2,7 +2,14 @@
 
 {% block body %}
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="{{ url('homepage') }}">Project lunenburg</a>
+        <a class="navbar-brand" style="color:white" href="{{ url('homepage') }}">Project Lunenburg</a>
+        {% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
+                <a class="navbar-brand" style="color:gray">Inkoper</a>
+        {% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
+                <a class="navbar-brand" style="color:gray">Magazijnmeester</a>
+        {% elseif is_granted(expression('"ROLE_VERKOPER" in roles')) %}
+                <a class="navbar-brand" style="color:gray">Verkoper</a>
+        {% endif %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

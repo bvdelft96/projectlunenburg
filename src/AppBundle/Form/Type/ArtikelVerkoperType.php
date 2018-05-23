@@ -10,36 +10,19 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 //EntiteitType vervangen door b.v. KlantType
-class ArtikelInkoperType extends AbstractType
+class ArtikelVerkoperType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 		//gebruiken wat je nodig hebt, de id hoeft er niet bij als deze auto increment is
 
         $builder
-            ->add('omschrijving', TextType::class) //naam is b.v. een attribuut of variabele van klant
+            ->add('verkopen', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
-        $builder
-            ->add('specificaties', TextType::class, array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('inkoopprijs', MoneyType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('vervangendArtikel', TextType::class, array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('minimumVoorraad', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        $builder
-            ->add('voorraadaantal', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        ;
-        //$builder
-            //->add('bestelserie', IntegerType::class) //naam is b.v. een attribuut of variabele van klant
-        //;
-
+        
 
 
 		//zie

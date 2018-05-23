@@ -33,7 +33,7 @@ class ArtikelType extends AbstractType
             ->add('inkoopprijs', MoneyType::class) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
-            ->add('vervangendeArtikel', TextType::class, array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
+            ->add('vervangendArtikel', TextType::class, array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
             ->add('minimumVoorraad', IntegerType::class) //naam is b.v. een attribuut of variabele van klant

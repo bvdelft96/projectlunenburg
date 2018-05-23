@@ -93,10 +93,10 @@ class Artikel
     /**
      * @var string
      *
-     * @ORM\Column(name="vervangendeArtikel", type="string", length=255, nullable=true)
+     * @ORM\Column(name="vervangendArtikel", type="string", length=255, nullable=true)
      */
 
-    private $vervangendeArtikel;
+    private $vervangendArtikel;
 
     /**
      * @var integer
@@ -118,6 +118,30 @@ class Artikel
      * @ORM\Column(name="bestelserie", type="integer", length=20, nullable=true)
      */
     private $bestelserie;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="verkopen", type="integer", length=20, nullable=true)
+     */
+    private $verkopen;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="gereserveerdeVoorraad", type="integer", length=10, nullable=true)
+     */
+
+    private $gereserveerdeVoorraad;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="vrijeVoorraad", type="integer", length=10, nullable=true)
+     */
+
+    private $vrijeVoorraad;
+
 
     //**************************************************Set/Get Functies hieronder!*********************************
 
@@ -243,27 +267,27 @@ class Artikel
     }
 
     /**
-     * Set vervangendeArtikel
+     * Set vervangendArtikel
      *
-     * @param string $vervangendeArtikel
+     * @param string $vervangendArtikel
      *
      * @return Artikel
      */
-    public function setVervangendeartikel($vervangendeArtikel)
+    public function setVervangendartikel($vervangendeArtikel)
     {
-        $this->vervangendeArtikel = $vervangendeArtikel;
+        $this->vervangendArtikel = $vervangendArtikel;
 
         return $this;
     }
 
     /**
-     * Get vervangendeArtikel
+     * Get vervangendArtikel
      *
      * @return string
      */
-    public function getVervangendeartikel()
+    public function getVervangendartikel()
     {
-        return $this->vervangendeArtikel;
+        return $this->vervangendArtikel;
     }
 
      /**
@@ -335,6 +359,79 @@ class Artikel
     {
         return $this->bestelserie;
     }
+
+     /**
+     * Set verkopen
+     *
+     * @param integer $verkopen
+     *
+     * @return Verkopen
+     */
+    public function setVerkopen($verkopen)
+    {
+       $this->verkopen= $verkopen;
+
+       return $this;
+    }
+
+    /**
+     * Get verkopen
+     *
+     * @return integer
+     */
+    public function getVerkopen()
+    {
+        return $this->verkopen;
+
+    }
+
+    /**
+     * Set gereserveerdeVoorraad
+     *
+     * @param integer $gereserveerdeVoorraad
+     *
+     */
+    public function setGereserveerdevoorraad($gereserveerdeVoorraad)
+    {
+       $this->gereserveerdeVoorraad= $gereserveerdeVoorraad;
+
+       return $this;
+    }
+
+    /**
+     * Get gereserveerdeVoorraad
+     *
+     * @return integer
+     */
+    public function getGereserveerdevoorraad()
+    {
+        return $this->gereserveerdeVoorraad;
+    }
+
+    /**
+     * Set vrijeVoorraad
+     *
+     * @param integer $vrijeVoorraad
+     *
+     * @return Artikel
+     */
+    public function setVrijevoorraad($vrijeVoorraad)
+    {
+       $this->vrijeVoorraad= $vrijeVoorraad;
+
+       return $this;
+    }
+
+    /**
+     * Get vrijeVoorraad
+     *
+     * @return integer
+     */
+    public function getVrijevoorraad()
+    {
+        return $this->vrijeVoorraad;
+    }
+
 }
 
 

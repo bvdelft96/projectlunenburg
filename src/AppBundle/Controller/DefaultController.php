@@ -28,6 +28,10 @@ class DefaultController extends Controller
         {
             return $this->redirectToRoute('magazijnmeester');
         }
+        else if ($authorizationChecker->isGranted(new Expression('"ROLE_VERKOPER" in roles')))
+        {
+            return $this->redirectToRoute('verkoper');
+        }
         else
         {
             return $this->render('default/index.html.twig');

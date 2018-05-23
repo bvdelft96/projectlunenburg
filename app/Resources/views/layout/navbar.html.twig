@@ -2,7 +2,29 @@
     <ul class="navbar-nav mr-auto">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('security_logout') }}">Uitloggen</a>
+                <div>
+                {% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
+                <li style="float:left"><a class="btn btn-outline-success" href="{{ url('artikelnieuw') }}"><i class="fas fa-plus"></i> Artikel toevoegen</a></li>
+                {% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
+                <li><h3> </h3></li>
+                {% endif %}
+                </div>
+
+            <div>
+                <style>
+                    a:link {text-decoration: none;}
+
+                    a:visited {text-decoration: none;}
+
+                    a:hover {text-decoration: none}
+
+                    a:active {text-decoration: none;}
+                </style>
+                    
+                    <a style="color:gray" class="glyphicon glyphicon-log-out" href="{{ url('security_logout') }}">Uitloggen</a>
+            </div>
+
+
             </li>
         {% endif %}
         {#{% if is_granted(expression('"ROLE_INKOPER" in roles')) %}#}

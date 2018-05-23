@@ -13,6 +13,10 @@ security:
                         password: magazijnmeester
                         roles: 'ROLE_MAGAZIJNMEESTER'
 
+                    verkoper:
+                        password: verkoper
+                        roles: 'ROLE_VERKOPER'
+
                     testgebruiker:
                         password: test
                         roles: 'ROLE_GEBRUIKER'
@@ -20,6 +24,7 @@ security:
     access_control:
         - { path: '^/inkoper/*', roles: [ROLE_INKOPER] }
         - { path: '^/magazijnmeester/*', roles: [ROLE_MAGAZIJNMEESTER] }
+        - { path: '^/verkoper/*', roles: [ROLE_VERKOPER] }
         - { path: '^/logout', roles: [IS_AUTHENTICATED_ANONYMOUSLY] }
 
     encoders:

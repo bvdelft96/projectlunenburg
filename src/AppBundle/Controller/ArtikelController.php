@@ -10,6 +10,7 @@ use AppBundle\Entity\Artikel;
 use AppBundle\Form\Type\ArtikelType;
 use AppBundle\Form\Type\ArtikelInkoperType;
 use AppBundle\Form\Type\ArtikelMagazijnmeesterType;
+use AppBundle\Form\Type\ArtikelVerkoperType;
 
 
 
@@ -103,33 +104,28 @@ class ArtikelController extends Controller
         ]);
     }
 
-    //Functie om naar de homepagina van de inkoper te gaan.
+    /** 
+    * @Route ("/verkoper/artikel/wijzigen/{artikelnummer} ", name="verkoperartikelwijzigen")
+    */
+    public function wijzigVerkoperartikel(Request $request, $artikelnummer){
+        $bestaandeArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->find($artikelnummer);
+        $form = $this->createForm(ArtikelVerkoperType::class, $bestaandeArtikel);
 
-    /**
-     * @Route ("/inkoper", name="inkoper")
-     */
-    public function inkoperHomepage(Request $request){
-        $artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            //Functie om bestelserie te berekenen
 
-        //Verwijzing naar formulier
-        return $this->render('inkoper/index.html.twig', [
-            'artikelen' => $artikelen
-        ]);
-
-    }
-
-    //Functie om naar de homepagina van de magazijnmeester te gaan.
-
-    /**
-     * @Route ("/magazijnmeester", name="magazijnmeester")
-     */
-    public function magazijnmeesterHomepage(Request $request){
-        $artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($bestaandeArtikel);
+            $em->flush();
+            //Verwijzing naar de pagina verkoper
+            return $this->redirectToRoute('verkoper');
+        }
 
         //Verwijzing naar formulier
-        return $this->render('magazijnmeester/index.html.twig', [
-            'artikelen' => $artikelen
+        return $this->render('form.html.twig', [
+            'form' => $form->createView(),
+            'title' => 'Verkopen wijzigen',
         ]);
-
     }
 }
