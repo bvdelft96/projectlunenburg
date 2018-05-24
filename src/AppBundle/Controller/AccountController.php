@@ -43,7 +43,7 @@ class AccountController extends Controller
 
         foreach($artikelen as $artikel){
             if ($artikel->getVerkopen() == null){
-                $artikel->setGereserveerdevoorraad($artikel->getVoorraadaantal());
+                $artikel->setGereserveerdevoorraad(0);
                 $artikel->setVrijevoorraad($artikel->getVoorraadaantal());
             } else{
                 $artikel->setGereserveerdevoorraad($artikel->getVerkopen());
