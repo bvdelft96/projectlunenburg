@@ -5,23 +5,17 @@
 {% block content %}
 
     <div class="page-header">
-        <div class="container">
-            {% if status == 0 %}
-                <h2 class="text-center">Overzicht - Alle artikelen</h2>
-            {% elseif status == 1 %}
-                <h2 class="text-center">Overzicht - In voorraad</h2>
-            {% elseif status == 2 %}
-                <h2 class="text-center">Overzicht - Uit voorraad</h2>
-            {% endif %}
+        <div class="container-fluid">
+            <p></p>
 
             {% if status != 0 %}
                 <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 0, 'q': q}) }}">Alle artikelen</a>
             {% endif %}
             {% if status != 1 %}
-                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 1, 'q': q}) }}">Alle in voorraad</a>
+                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 1, 'q': q}) }}">In voorraad</a>
             {% endif %}
             {% if status != 2 %}
-                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 2, 'q': q}) }}">Alle uit voorraad</a>
+                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 2, 'q': q}) }}">Uit voorraad</a>
             {% endif %}
 
             <a class="btn btn-outline-success" href="{{ url('artikelnieuw') }}"><i class="fas fa-plus"></i> Artikel toevoegen</a>
@@ -37,7 +31,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-striped">

@@ -31,6 +31,21 @@ class ArtikelController extends Controller
         return $this->redirectToRoute('inkoper', ['status' => $status]);
     }
 
+    /**
+     * @Route ("/magazijnmeester/artikel/verwijder/{status}/{artikelnummer}", name="magazijnmeesterartikeluitvoorraad")
+     */
+    public function magazijnmeesterartikeluitvoorraad($status, $artikelnummer) {
+        $bestaandeArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->find($artikelnummer);
+        $bestaandeArtikel->setInVoorraad(false);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($bestaandeArtikel);
+        $em->flush();
+
+        return $this->redirectToRoute('magazijnmeester', ['status' => $status]);
+    }
+
+
 
     //Functie om een nieuwe artikel te maken
 

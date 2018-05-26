@@ -5,12 +5,32 @@
 {% block content %}
 
     <div class="page-header">
-        <div class="container">
-            <h2 class="text-center"> </h2>
+        <div class="container-fluid">
+            <p></p>
+
+            {% if status != 0 %}
+                <a class="btn btn-outline-primary" href="{{ url('magazijnmeester', {'status': 0, 'q': q}) }}">Alle artikelen</a>
+            {% endif %}
+            {% if status != 1 %}
+                <a class="btn btn-outline-primary" href="{{ url('magazijnmeester', {'status': 1, 'q': q}) }}">In voorraad</a>
+            {% endif %}
+            {% if status != 2 %}
+                <a class="btn btn-outline-primary" href="{{ url('magazijnmeester', {'status': 2, 'q': q}) }}">Uit voorraad</a>
+            {% endif %}
+
+
+            <br /><br />
+
+            <form>
+                <input name="q" value="{{ q }}" placeholder="Zoeken" />
+                <button type="submit">Zoeken</button>
+            </form>
+
+            <br />
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-striped">
@@ -20,7 +40,7 @@
                         <th scope="col">Omschrijving</th>
                         <th scope="col">Magazijnlocatie</th>
                         <th scope="col">Minimum voorraad</th>
-                        <th scope="col">Actuele voorraad</th>
+                        <th scope="col">Technische voorraad</th>
                         <th scope="col">Gereserveerde voorraad</th>
                         <th scope="col">Vrije voorraad</th>
                         <th scope="col"></th>

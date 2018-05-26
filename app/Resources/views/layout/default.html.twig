@@ -2,13 +2,44 @@
 
 {% block body %}
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" style="color:white" href="{{ url('homepage') }}">Project Lunenburg</a>
+        <a class="navbar-brand" href="{{ url('homepage') }}"><img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" alt="Lunenburg" width="100" height="25" /></a>
         {% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
                 <a class="navbar-brand" style="color:gray">Inkoper</a>
+                
+                
+                {% if status == 0 %}
+                <a style="color:white" class="navbar-brand">Overzicht - Alle artikelen</a>
+                {% elseif status == 1 %}
+                <a style="color:white" class="navbar-brand">Overzicht - In voorraad</a>
+                {% elseif status == 2 %}
+                <a style="color:white" class="navbar-brand">Overzicht - Uit voorraad</a>
+                {% endif %}
+                
         {% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
                 <a class="navbar-brand" style="color:gray">Magazijnmeester</a>
+
+
+                {% if status == 0 %}
+                <a style="color:white" class="navbar-brand">Overzicht - Alle artikelen</a>
+                {% elseif status == 1 %}
+                <a style="color:white" class="navbar-brand">Overzicht - In voorraad</a>
+                {% elseif status == 2 %}
+                <a style="color:white" class="navbar-brand">Overzicht - Uit voorraad</a>
+                {% endif %}
+
         {% elseif is_granted(expression('"ROLE_VERKOPER" in roles')) %}
                 <a class="navbar-brand" style="color:gray">Verkoper</a>
+
+                
+                {% if status == 0 %}
+                <a style="color:white" class="navbar-brand">Overzicht - Alle artikelen</a>
+                {% elseif status == 1 %}
+                <a style="color:white" class="navbar-brand">Overzicht - In voorraad</a>
+                {% elseif status == 2 %}
+                <a style="color:white" class="navbar-brand">Overzicht - Uit voorraad</a>
+                {% endif %}
+
+
         {% endif %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
