@@ -17,6 +17,21 @@ use AppBundle\Form\Type\ArtikelVerkoperType;
 class ArtikelController extends Controller
 {
 
+    /**
+     * @Route ("/inkoper/artikel/verwijder/{status}/{artikelnummer}", name="inkoperartikeluitvoorraad")
+     */
+    public function inkoperartikeluitvoorraad($status, $artikelnummer) {
+        $bestaandeArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->find($artikelnummer);
+        $bestaandeArtikel->setInVoorraad(false);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($bestaandeArtikel);
+        $em->flush();
+
+        return $this->redirectToRoute('inkoper', ['status' => $status]);
+    }
+
+
     //Functie om een nieuwe artikel te maken
 
     /** 

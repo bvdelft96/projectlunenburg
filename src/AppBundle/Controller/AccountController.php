@@ -20,14 +20,27 @@ class AccountController extends Controller
     //Functie om naar de homepagina van de inkoper te gaan.
 
     /**
-     * @Route ("/inkoper", name="inkoper")
+     * @Route ("/inkoper/{status}", defaults={"status"=1}, name="inkoper")
+     *
+     * @param $status 0 = alle, 1 = in voorraad, 2 = uit voorraad
+     * @return Response
      */
-    public function inkoperHomepage(Request $request){
-        $artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+    public function inkoperHomepage($status){
+
+        $repository = $this->getDoctrine()->getRepository("AppBundle:Artikel");
+
+        if($status != 0) {
+            $artikelen = $repository->findBy([
+                'inVoorraad' => ($status == 1)
+            ]);
+        } else {
+            $artikelen = $repository->findAll();
+        }
 
         //Verwijzing naar formulier
         return $this->render('inkoper/index.html.twig', [
-            'artikelen' => $artikelen
+            'artikelen' => $artikelen,
+            'status' => $status,
         ]);
 
     }
