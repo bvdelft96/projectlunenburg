@@ -25,22 +25,34 @@ class AccountController extends Controller
      * @param $status 0 = alle, 1 = in voorraad, 2 = uit voorraad
      * @return Response
      */
-    public function inkoperHomepage($status){
+    public function inkoperHomepage(Request $request, $status){
 
-        $repository = $this->getDoctrine()->getRepository("AppBundle:Artikel");
+        $search = $request->get('q');
+        $em = $this->getDoctrine()->getManager();
 
         if($status != 0) {
-            $artikelen = $repository->findBy([
-                'inVoorraad' => ($status == 1)
-            ]);
+            if ($search) {
+                $artikelen = $em->createQuery('Select a FROM AppBundle:Artikel a WHERE a.inVoorraad = :status AND (a.artikelnummer LIKE :query OR a.omschrijving LIKE :query)')
+                    ->setParameter('query', '%'.$search.'%')
+                    ->setParameter('status', $status == 1);
+            } else {
+                $artikelen = $em->createQuery('Select a FROM AppBundle:Artikel a WHERE a.inVoorraad = :status')
+                    ->setParameter('status', $status == 1);
+            }
         } else {
-            $artikelen = $repository->findAll();
+            if ($search) {
+                $artikelen = $em->createQuery('Select a FROM AppBundle:Artikel a WHERE a.artikelnummer LIKE :query OR a.omschrijving LIKE :query')
+                    ->setParameter('query', '%'.$search.'%');
+            } else {
+                $artikelen = $em->createQuery('Select a FROM AppBundle:Artikel a');
+            }
         }
 
         //Verwijzing naar formulier
         return $this->render('inkoper/index.html.twig', [
-            'artikelen' => $artikelen,
+            'artikelen' => $artikelen->getResult(),
             'status' => $status,
+            'q' => $search
         ]);
 
     }

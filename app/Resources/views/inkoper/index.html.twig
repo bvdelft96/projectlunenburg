@@ -15,16 +15,23 @@
             {% endif %}
 
             {% if status != 0 %}
-                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 0}) }}">Alle artikelen</a>
+                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 0, 'q': q}) }}">Alle artikelen</a>
             {% endif %}
             {% if status != 1 %}
-                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 1}) }}">Alle in voorraad</a>
+                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 1, 'q': q}) }}">Alle in voorraad</a>
             {% endif %}
             {% if status != 2 %}
-                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 2}) }}">Alle uit voorraad</a>
+                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 2, 'q': q}) }}">Alle uit voorraad</a>
             {% endif %}
 
             <a class="btn btn-outline-success" href="{{ url('artikelnieuw') }}"><i class="fas fa-plus"></i> Artikel toevoegen</a>
+
+            <br /><br />
+
+            <form>
+                <input name="q" value="{{ q }}" placeholder="Zoeken" />
+                <button type="submit">Zoeken</button>
+            </form>
 
             <br />
         </div>
