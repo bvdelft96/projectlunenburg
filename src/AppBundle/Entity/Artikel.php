@@ -142,6 +142,13 @@ class Artikel
 
     private $vrijeVoorraad;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="in_voorraad", type="boolean")
+     */
+    private $inVoorraad;
+
 
     //**************************************************Set/Get Functies hieronder!*********************************
 
@@ -430,6 +437,22 @@ class Artikel
     public function getVrijevoorraad()
     {
         return $this->vrijeVoorraad;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getInVoorraad()
+    {
+        return $this->inVoorraad;
+    }
+
+    /**
+     * @param bool $inVoorraad
+     */
+    public function setInVoorraad($inVoorraad)
+    {
+        $this->inVoorraad = $inVoorraad;
     }
 
 }
