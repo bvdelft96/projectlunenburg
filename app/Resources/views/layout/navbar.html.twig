@@ -1,41 +1,26 @@
 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <ul class="navbar-nav mr-auto">
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li class="nav-item">
-                <div>
-                {% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
-                <li style="float:left"><a class="btn btn-outline-success" href="{{ url('artikelnieuw') }}"><i class="fas fa-plus"></i> Artikel toevoegen</a></li>
-                {% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
-                <li><h3> </h3></li>
-                {% endif %}
-                </div>
-
-            <div>
-                <style>
-                    a:link {text-decoration: none;}
-
-                    a:visited {text-decoration: none;}
-
-                    a:hover {text-decoration: none}
-
-                    a:active {text-decoration: none;}
-                </style>
-                    
-                    <a style="color:gray" class="glyphicon glyphicon-log-out" href="{{ url('security_logout') }}">Uitloggen</a>
-            </div>
-
-
-            </li>
+        {% if is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
+        <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+        </li>
         {% endif %}
-        {#{% if is_granted(expression('"ROLE_INKOPER" in roles')) %}#}
-            {#<li class="nav-item">#}
-                {#<a class="nav-link" href="{{ url('inkoper') }}">Inkoper</a>#}
-            {#</li>#}
-        {#{% endif %}#}
-        {#{% if is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}#}
-            {#<li class="nav-item">#}
-                {#<a class="nav-link" href="{{ url('magazijnmeester') }}">Magazijnmeester</a>#}
-            {#</li>#}
-        {#{% endif %}#}
+        <li class="nav-item dropdown show">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Dropdown</a>
+            <div class="dropdown-menu show" aria-labelledby="dropdown01">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </li>
     </ul>
+    <div class="my-2 my-lg-0">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('security_logout') }}">Uitloggen</a>
+            </li>
+        </ul>
+    </div>
+    {% endif %}
 </div>
