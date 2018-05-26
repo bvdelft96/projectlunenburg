@@ -6,7 +6,24 @@
 
     <div class="page-header">
         <div class="container">
-            <h2 class="text-center"> </h2>
+            {% if status == 0 %}
+                <h2 class="text-center">Overzicht - Alle artikelen</h2>
+            {% elseif status == 1 %}
+                <h2 class="text-center">Overzicht - In voorraad</h2>
+            {% elseif status == 2 %}
+                <h2 class="text-center">Overzicht - Uit voorraad</h2>
+            {% endif %}
+
+            {% if status != 0 %}
+                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 0}) }}">Alle artikelen</a>
+            {% endif %}
+            {% if status != 1 %}
+                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 1}) }}">Alle in voorraad</a>
+            {% endif %}
+            {% if status != 2 %}
+                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 2}) }}">Alle uit voorraad</a>
+            {% endif %}
+            <br />
         </div>
     </div>
 
@@ -26,22 +43,32 @@
                         <th scope="col">Voorraad aantal</th>
                         <th scope="col">Bestelserie</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for artikel in artikelen %}
-                    <tr>
-                        <th scope="row">{{ artikel.artikelnummer }}</th>
-                        <td>{{ artikel.omschrijving }}</td>
-                        <td>{{ artikel.specificaties }}</td>
-                        <td>{{ artikel.magazijnlocatie }}</td>
-                        <td>{{ artikel.inkoopprijs }}</td>
-                        <td>{{ artikel.vervangendArtikel }}</td>
-                        <td>{{ artikel.minimumVoorraad }}</td>
-                        <td>{{ artikel.voorraadaantal }}</td>
-                        <td>{{ artikel.bestelserie }}</td>
-                        <td><a class="btn btn-sm btn-primary" href="{{ path('inkoperartikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzigen</a></td>
-                    </tr>
+                        <tr>
+                            <th scope="row">{{ artikel.artikelnummer }}</th>
+                            <td>{{ artikel.omschrijving }}</td>
+                            <td>{{ artikel.specificaties }}</td>
+                            <td>{{ artikel.magazijnlocatie }}</td>
+                            <td>{{ artikel.inkoopprijs }}</td>
+                            <td>{{ artikel.vervangendArtikel }}</td>
+                            <td>{{ artikel.minimumVoorraad }}</td>
+                            <td>{{ artikel.voorraadaantal }}</td>
+                            <td>{{ artikel.bestelserie }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-primary" href="{{ path('inkoperartikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzigen</a>
+                            </td>
+                            <td>
+                                {% if artikel.inVoorraad %}
+                                    <a class="btn btn-sm btn-danger" href="{{ path('inkoperartikeluitvoorraad', {'status': status, 'artikelnummer':artikel.artikelnummer}) }}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
                     {% endfor %}
                     </tbody>
                 </table>
@@ -49,4 +76,5 @@
         </div>
         <hr>
     </div>
+
 {% endblock %}
