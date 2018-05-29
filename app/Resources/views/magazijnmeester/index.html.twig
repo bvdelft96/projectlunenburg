@@ -6,6 +6,15 @@
 
     <div class="page-header">
         <div class="container-fluid">
+
+            {% if status == 0 %}
+                <a class="navbar-brand">Overzicht - Alle artikelen</a>
+                {% elseif status == 1 %}
+                <a class="navbar-brand">Overzicht - In voorraad</a>
+                {% elseif status == 2 %}
+                <a class="navbar-brand">Overzicht - Uit voorraad</a>
+                {% endif %}
+
             <p></p>
 
             {% if status != 0 %}

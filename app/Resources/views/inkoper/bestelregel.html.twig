@@ -1,0 +1,61 @@
+{% extends 'layout/default.html.twig' %}
+
+{% block title %}Inkoper - Lunenburg{% endblock %}
+
+{% block content %}
+
+    <div class="page-header">
+        <div class="container-fluid">
+            <p></p>
+
+            
+            <a class="btn btn-outline-primary" href="{{ url('inkoper')}}">Alle artikelen</a>
+            <a class="btn btn-outline-primary" href="{{ url('llebestelopdrachten') }}">Bestelopdrachten</a>
+            <a class="btn btn-outline-success" href="{{ url('artikelnieuw') }}"><i class="fas fa-plus"></i> Artikel toevoegen</a>
+            <a class="btn btn-outline-success" href="{{ url('bestellingnieuw') }}"><i class="fas fa-plus"></i> Bestelling toevoegen</a>
+
+            <br /><br />
+
+            <form>
+                <input name="q" value="{{ q }}" placeholder="Zoeken" />
+                <button type="submit">Zoeken</button>
+            </form>
+
+            <br />
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Bestelordernummer</th>
+                        <th scope="col">Artikelnummer</th>
+                        <th scope="col">Beschrijving</th>
+                        <th scope="col">Aantal</th>
+                        <th scope="col">Magazijnlocatie</th>
+                        <th scope="col">Keuringseisen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for artikel in artikelen %}
+                    {% for bestelling in bestellingen %}
+                    <tr>
+                        <th scope="row">{{ bestelling.bestelordernummer }}</th>
+                        <td>{{ artikel.artikelnummer }}</td>
+                        <td>{{ artikel.beschrijving }}</td>
+                        <td>{{ artikel.bestelserie }}</td>
+                        <td>{{ artikel.magazijnlocatie }}</td>
+                        <td>{{ bestelling.keuringseisen }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}
