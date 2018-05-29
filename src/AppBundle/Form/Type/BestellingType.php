@@ -3,6 +3,7 @@
 namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,7 +29,13 @@ class BestellingType extends AbstractType
         ;
         $builder
             ->add('keuringseisen', TextType::class) //naam is b.v. een attribuut of variabele van klant
-        ; 
+        ;
+        $builder
+            ->add('bestelregels', CollectionType::class, [
+                'entry_type' => BestelregelType::class,
+                'allow_add' => true
+            ])
+        ;
     }
     
     /**

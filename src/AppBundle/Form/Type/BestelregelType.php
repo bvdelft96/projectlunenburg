@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Artikel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,15 +21,13 @@ class BestelregelType extends AbstractType
 
         //gebruiken wat je nodig hebt, de id hoeft er niet bij als deze auto increment is
         $builder
-            ->add('artikelnummer', EntityType::class, array(
-            'class' => 'AppBundle:Artikel',
-            'choice_label' => 'artikelnummer'))
-        ;
-        $builder
-            ->add('bestelordernummer', EntityType::class, array(
-            'class' => 'AppBundle:Bestelling',
-            'choice_label' => 'bestelordernummer'))
-        ;  
+            ->add('artikel', EntityType::class, [
+                'class' => 'AppBundle:Artikel',
+                'choice_label' => function (Artikel $artikel) {
+                    return $artikel->getArtikelnummer() . ' - ' . $artikel->getOmschrijving();
+                }
+            ])
+            ->add('aantal');
     }
     
     /**

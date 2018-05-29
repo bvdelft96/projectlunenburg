@@ -22,21 +22,53 @@ class Bestelregel
     private $id;
 
     /**
-     * @var int
-     *
      * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="bestelregels")
      * @ORM\JoinColumn(name="artikelnummer", referencedColumnName="artikelnummer")
      */
-    private $artikelnummer;
+    private $artikel;
 
     /**
-     * @var int
-     *
-     * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="bestelregels")
+     * @ORM\ManyToOne(targetEntity="Bestelling", inversedBy="bestelregels")
      * @ORM\JoinColumn(name="bestelordernummer", referencedColumnName="bestelordernummer")
      */
-    private $bestelordernummer;
+    private $bestelling;
 
+    /**
+     * @ORM\Column(name="aantal", type="integer")
+     */
+    private $aantal;
+
+    /**
+     * @return mixed
+     */
+    public function getArtikel()
+    {
+        return $this->artikel;
+    }
+
+    /**
+     * @param mixed $artikel
+     */
+    public function setArtikel($artikel)
+    {
+        $this->artikel = $artikel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBestelling()
+    {
+        return $this->bestelling;
+    }
+
+    /**
+     * @param mixed $bestelling
+     */
+    public function setBestelling($bestelling)
+    {
+        $this->bestelling = $bestelling;
+    }
 
     /**
      * Set id
@@ -63,51 +95,20 @@ class Bestelregel
     }
 
     /**
-     * Set artikelnummer
-     *
-     * @param integer $artikelnummer
-     *
-     * @return Bestelregel
+     * @return mixed
      */
-    public function setArtikelnummer($artikelnummer)
+    public function getAantal()
     {
-        $this->artikelnummer = $artikelnummer;
-    
-        return $this;
+        return $this->aantal;
     }
 
     /**
-     * Get artikelnummer
-     *
-     * @return integer
+     * @param mixed $aantal
      */
-    public function getArtikelnummer()
+    public function setAantal($aantal)
     {
-        return $this->artikelnummer;
+        $this->aantal = $aantal;
     }
 
-    /**
-     * Set bestelordernummer
-     *
-     * @param integer $bestelordernummer
-     *
-     * @return Bestelregel
-     */
-    public function setBestelordernummer($bestelordernummer)
-    {
-        $this->bestelordernummer = $bestelordernummer;
-    
-        return $this;
-    }
-
-    /**
-     * Get bestelordernummer
-     *
-     * @return integer
-     */
-    public function getBestelordernummer()
-    {
-        return $this->bestelordernummer;
-    }
 }
 

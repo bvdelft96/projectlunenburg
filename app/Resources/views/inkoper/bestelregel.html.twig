@@ -10,16 +10,9 @@
 
             
             <a class="btn btn-outline-primary" href="{{ url('inkoper')}}">Alle artikelen</a>
-            <a class="btn btn-outline-primary" href="{{ url('llebestelopdrachten') }}">Bestelopdrachten</a>
+            <a class="btn btn-outline-primary" href="{{ url('allebestelopdrachten') }}">Bestelopdrachten</a>
             <a class="btn btn-outline-success" href="{{ url('artikelnieuw') }}"><i class="fas fa-plus"></i> Artikel toevoegen</a>
             <a class="btn btn-outline-success" href="{{ url('bestellingnieuw') }}"><i class="fas fa-plus"></i> Bestelling toevoegen</a>
-
-            <br /><br />
-
-            <form>
-                <input name="q" value="{{ q }}" placeholder="Zoeken" />
-                <button type="submit">Zoeken</button>
-            </form>
 
             <br />
         </div>
@@ -33,24 +26,24 @@
                     <tr>
                         <th scope="col">Bestelordernummer</th>
                         <th scope="col">Artikelnummer</th>
-                        <th scope="col">Beschrijving</th>
+                        <th scope="col">Omschrijving</th>
                         <th scope="col">Aantal</th>
                         <th scope="col">Magazijnlocatie</th>
                         <th scope="col">Keuringseisen</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for artikel in artikelen %}
                     {% for bestelling in bestellingen %}
-                    <tr>
-                        <th scope="row">{{ bestelling.bestelordernummer }}</th>
-                        <td>{{ artikel.artikelnummer }}</td>
-                        <td>{{ artikel.beschrijving }}</td>
-                        <td>{{ artikel.bestelserie }}</td>
-                        <td>{{ artikel.magazijnlocatie }}</td>
-                        <td>{{ bestelling.keuringseisen }}</td>
-                    </tr>
-                    {% endfor %}
+                        {% for bestelregel in bestelling.bestelregels %}
+                        <tr>
+                            <th scope="row">{{ bestelling.bestelordernummer }}</th>
+                            <td>{{ bestelregel.artikel.artikelnummer }}</td>
+                            <td>{{ bestelregel.artikel.omschrijving }}</td>
+                            <td>{{ bestelregel.aantal }}</td>
+                            <td>{{ bestelregel.artikel.magazijnlocatie }}</td>
+                            <td>{{ bestelling.keuringseisen }}</td>
+                        </tr>
+                        {% endfor %}
                     {% endfor %}
                     </tbody>
                 </table>

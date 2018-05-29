@@ -150,20 +150,34 @@ class Artikel
     private $inVoorraad;
 
     /**
-     * @var int
-     *
-     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="artikelnummer")
+     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="artikel")
      */
-
     private $bestelregels;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->bestelregels = new ArrayCollection();
     }
 
 
     //**************************************************Set/Get Functies hieronder!*********************************
 
+
+    /**
+     * @param mixed $bestelregels
+     */
+    public function setBestelregels($bestelregels)
+    {
+        $this->bestelregels = $bestelregels;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBestelregels()
+    {
+        return $this->bestelregels;
+    }
 
     /**
      * Set artikelnummer

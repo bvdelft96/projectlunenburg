@@ -16,20 +16,15 @@ class BestellingController extends Controller
 {
     
     /**
-     * @Route ("/inkoper/bestelopdrachten/, name="allebestelopdrachten")
-     *
+     * @Route ("/inkoper/bestelopdrachten/", name="allebestelopdrachten")
      */
     public function alleBestelopdrachten(Request $request){
 
-        $artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
         $bestellingen = $this->getDoctrine()->getRepository("AppBundle:Bestelling")->findAll();
-        
 
         //Verwijzing naar formulier
         return $this->render('inkoper/bestelregel.html.twig', [
-            'bestellingen' => $bestellingen,
-            'artikelen' => $artikelen
-
+            'bestellingen' => $bestellingen
         ]);
 
     }
@@ -40,41 +35,51 @@ class BestellingController extends Controller
     public function nieuweBestelling (Request $request) {
         $nieuweBestelling = new Bestelling();
         $form = $this->createForm(BestellingType::class, $nieuweBestelling);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($nieuweBestelling->getBestelregels() as $bestelregel) {
+                $bestelregel->setBestelling($nieuweBestelling);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($nieuweBestelling);
             $em->flush();
-            return $this->redirect($this->generateurl("bestelregelnieuw"));
+            return $this->redirect($this->generateurl("allebestelopdrachten"));
         }
 
         //Verwijzing naar formulier
-        return $this->render('form.html.twig', [
+        return $this->render('inkoper/form.bestelling.html.twig', [
             'form' => $form->createView(),
             'title' => 'Bestelling toevoegen',
         ]);
     }
 
     /**
-    * @Route("/inkoper/bestelregel/nieuw", name="bestelregelnieuw")
-    */
-    public function nieuweBestelregel (Request $request) {
-        $nieuweBestelregel = new Bestelregel();
-        $form = $this->createForm(BestelregelType::class, $nieuweBestelregel);
-
+     * @Route("/inkoper/bestelling/wijzigen/{bestelling}", name="bestellingwijzigen")
+     */
+    public function editBestelling (Request $request, $bestelling) {
+        $bestaandeBestelling = $this->getDoctrine()->getRepository("AppBundle:Bestelling")->find($bestelling);
+        $form = $this->createForm(BestellingType::class, $bestaandeBestelling);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($bestaandeBestelling->getBestelregels() as $bestelregel) {
+                $bestelregel->setBestelling($bestaandeBestelling);
+            }
+
             $em = $this->getDoctrine()->getManager();
-            $em->persist($nieuweBestelregel);
+            $em->persist($bestaandeBestelling);
             $em->flush();
-            return $this->redirect($this->generateurl("inkoperallebestelopdrachten"));
+            return $this->redirect($this->generateurl("allebestelopdrachten"));
         }
 
         //Verwijzing naar formulier
-        return $this->render('form.html.twig', [
+        return $this->render('inkoper/form.bestelling.html.twig', [
             'form' => $form->createView(),
-            'title' => 'Bestelling toevoegen',
+            'title' => 'Bestelling wijzigen',
         ]);
     }
 }

@@ -37,15 +37,29 @@ class Bestelling
     private $keuringseisen;
 
     /**
-     * @var int
-     *
-     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="bestelordernummer")
+     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="bestelling", cascade={"persist"})
      */
-
     private $bestelregels;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->bestelregels = new ArrayCollection();
+    }
+
+    /**
+     * @param mixed $bestelregels
+     */
+    public function setBestelregels($bestelregels)
+    {
+        $this->bestelregels = $bestelregels;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBestelregels()
+    {
+        return $this->bestelregels;
     }
 
     /**

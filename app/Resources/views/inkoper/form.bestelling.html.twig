@@ -1,0 +1,48 @@
+{% extends 'layout/default.html.twig' %}
+
+{% block title %}{{ title }} - Lunenburg{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <h1>{{ title }}</h1>
+                <form method="post" action="">
+                    {{ form_start(form) }}
+                    {{ form_row(form.bestelordernummer) }}
+                    {{ form_row(form.leverancier) }}
+                    {{ form_row(form.keuringseisen) }}
+
+                    {{ form_label(form.bestelregels) }}
+
+                    <ul id="bestelregels-fields-list"
+                        data-prototype="{{ form_widget(form.bestelregels.vars.prototype)|e }}"
+                        data-widget-tags="{{ '<li></li>'|e }}">
+                        {% for bestelregelField in form.bestelregels %}
+                            <li>
+                                {{ form_errors(bestelregelField) }}
+                                {{ form_widget(bestelregelField) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <a href="#"
+                       class="add-another-collection-widget"
+                       data-list="#bestelregels-fields-list">Bestelregel toevoegen</a>
+
+                    <hr />
+
+                    <input class="btn btn-default" type="submit">
+                    <a href="javascript:history.back()">Annuleren</a>
+
+                    <div style="display: none;">
+                        {{ form_end(form) }}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}
