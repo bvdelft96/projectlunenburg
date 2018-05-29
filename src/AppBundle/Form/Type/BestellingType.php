@@ -28,7 +28,7 @@ class BestellingType extends AbstractType
             ->add('leverancier', TextType::class) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
-            ->add('keuringseisen', TextType::class) //naam is b.v. een attribuut of variabele van klant
+            ->add('keuringseisen', TextType::class, array ('required' => false)) //naam is b.v. een attribuut of variabele van klant
         ;
         $builder
             ->add('bestelregels', CollectionType::class, [
