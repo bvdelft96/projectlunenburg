@@ -24,7 +24,7 @@ class BestelregelType extends AbstractType
             ->add('artikel', EntityType::class, [
                 'class' => 'AppBundle:Artikel',
                 'choice_label' => function (Artikel $artikel) {
-                    return $artikel->getArtikelnummer() . ' - ' . $artikel->getOmschrijving();
+                    return $artikel->getArtikelnummer() . ' - ' . $artikel->getOmschrijving() . ' - Bestelserie: ' . $artikel->getBestelserie();
                 }
             ])
             ->add('aantal');
