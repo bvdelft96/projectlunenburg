@@ -28,6 +28,7 @@
                         <th scope="col">Artikelnummer</th>
                         <th scope="col">Omschrijving</th>
                         <th scope="col">Aantal</th>
+                        <th scope="col">Leverancier</th>
                         <th scope="col">Magazijnlocatie</th>
                         <th scope="col">Keuringseisen</th>
                     </tr>
@@ -40,6 +41,7 @@
                             <td>{{ bestelregel.artikel.artikelnummer }}</td>
                             <td>{{ bestelregel.artikel.omschrijving }}</td>
                             <td>{{ bestelregel.aantal }}</td>
+                            <td>{{ bestelling.leverancier }}</td>
                             <td>{{ bestelregel.artikel.magazijnlocatie }}</td>
                             <td>{{ bestelling.keuringseisen }}</td>
                         </tr>
