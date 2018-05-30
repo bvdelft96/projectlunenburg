@@ -59,6 +59,7 @@ class ArtikelController extends Controller
     public function nieuweArtikel(Request $request){
         $nieuweArtikel = new Artikel();
         $form = $this->createForm(ArtikelType::class, $nieuweArtikel);
+        $nieuweArtikel->setInVoorraad(1);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
