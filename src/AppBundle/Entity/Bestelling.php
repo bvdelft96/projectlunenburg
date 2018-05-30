@@ -4,6 +4,9 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Bestelling
@@ -26,6 +29,12 @@ class Bestelling
      * @var string
      *
      * @ORM\Column(name="leverancier", type="string", length=6, nullable=true)
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 6,
+     *      minMessage = "Minimaal 1 karakters",
+     *      maxMessage = "Maximaal 6 karakters"
+     *)
      */
     private $leverancier;
 
