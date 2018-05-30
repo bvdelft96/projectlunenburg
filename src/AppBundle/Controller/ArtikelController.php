@@ -17,6 +17,8 @@ use AppBundle\Form\Type\ArtikelVerkoperType;
 class ArtikelController extends Controller
 {
 
+    //Functie om als inkoper een artikel te kunnen verwijderen.
+
     /**
      * @Route ("/inkoper/artikel/verwijder/{status}/{artikelnummer}", name="inkoperartikeluitvoorraad")
      */
@@ -30,6 +32,8 @@ class ArtikelController extends Controller
 
         return $this->redirectToRoute('inkoper', ['status' => $status]);
     }
+
+    //Functie om als inkoper een artikel te kunnen verwijderen.
 
     /**
      * @Route ("/magazijnmeester/artikel/verwijder/{status}/{artikelnummer}", name="magazijnmeesterartikeluitvoorraad")
@@ -133,6 +137,9 @@ class ArtikelController extends Controller
             'title' => 'Locatiecode wijzigen',
         ]);
     }
+
+
+    //Functie om als verkoper een artikel te kunnen wijzigen.
 
     /** 
     * @Route ("/verkoper/artikel/wijzigen/{artikelnummer} ", name="verkoperartikelwijzigen")

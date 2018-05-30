@@ -25,7 +25,7 @@ class Bestelling
     /**
      * @var string
      *
-     * @ORM\Column(name="leverancier", type="string", length=100, nullable=true)
+     * @ORM\Column(name="leverancier", type="string", length=6, nullable=true)
      */
     private $leverancier;
 

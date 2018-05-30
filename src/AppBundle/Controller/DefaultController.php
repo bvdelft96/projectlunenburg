@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 class DefaultController extends Controller
 {
 
-    //Functie om naar de homepagina te gaan met een redirect naar de homepagina.
+    //Functie om naar de homepagina te gaan met een redirect naar de homepagina van de gebruiker.
 
     /**
      * @Route("/", name="homepage")

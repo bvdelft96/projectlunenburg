@@ -15,6 +15,8 @@ use AppBundle\Form\Type\ArtikelType;
 class BestellingController extends Controller
 {
     
+    //Functie om als inkoper alle bestelopdrachten te kunnen zien
+
     /**
      * @Route ("/inkoper/bestelopdrachten/", name="allebestelopdrachten")
      */
@@ -28,6 +30,8 @@ class BestellingController extends Controller
         ]);
 
     }
+
+    //Functie om als inkoper een nieuwe bestelling te kunnen maken
 
     /**
     * @Route("/inkoper/bestelling/nieuw", name="bestellingnieuw")
@@ -55,6 +59,8 @@ class BestellingController extends Controller
             'title' => 'Bestelling toevoegen',
         ]);
     }
+
+    //Als inkoper een bestelling kunnen wijzigen.
 
     /**
      * @Route("/inkoper/bestelling/wijzigen/{bestelling}", name="bestellingwijzigen")
