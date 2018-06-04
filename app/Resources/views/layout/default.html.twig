@@ -25,10 +25,14 @@
     </nav>
 
     <main role="main">
-        {% block content %}{% endblock %}
+        {% block content %}
+
+        {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% endblock %}
     </main>
 
-    <footer class="container">
-        <p>&copy; Lunenburg 2017-2018</p>
-    </footer>
+
 {% endblock %}

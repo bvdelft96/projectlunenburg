@@ -1,0 +1,33 @@
+{% extends 'layout/default.html.twig' %}
+
+{% block title %}Registratie - Lunenburg{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <h1>Registratie</h1>
+                <form method="post" action="">
+                    {{ form_start(form) }}
+    				{{ form_row(form.username) }}
+    				{{ form_row(form.email) }}
+    				{{ form_row(form.plainPassword.first) }}
+    				{{ form_row(form.plainPassword.second) }}
+    				{{ form_row(form.roles) }}
+
+                    <hr />
+
+                    <input class="btn btn-default" type="submit">
+                    <a href="javascript:history.back()">Annuleren</a>
+
+                    <div style="display: none;">
+                        {{ form_end(form) }}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}

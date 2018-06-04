@@ -48,4 +48,12 @@ class DefaultController extends Controller
         return new Response($this->renderView('logout.html.twig'), 401);
     }
 
+    /**
+     * @Route("/admin")
+     */
+    public function adminAction()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
+    }
+
 }
