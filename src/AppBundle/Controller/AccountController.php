@@ -48,11 +48,39 @@ class AccountController extends Controller
             }
         }
 
+        $alert = count($em->createQuery('Select a FROM AppBundle:Artikel a WHERE a.bestelserie > 0')->setMaxResults(1)->getResult()) != 0;
+
         //Verwijzing naar formulier
         return $this->render('inkoper/index.html.twig', [
             'artikelen' => $artikelen->getResult(),
             'status' => $status,
-            'q' => $search
+            'q' => $search,
+            'alert' => $alert,
+        ]);
+
+    }
+
+    /**
+     * @Route ("/inkoper/voorraad/bestellen", name="inkopervoorraad")
+     *
+     * @return Response
+     */
+    public function inkoperVoorraad(Request $request){
+
+        $search = $request->get('q');
+        $em = $this->getDoctrine()->getManager();
+
+        if ($search) {
+            $artikelen = $em->createQuery('Select a FROM AppBundle:Artikel a WHERE a.bestelserie > 0 AND (a.artikelnummer LIKE :query OR a.omschrijving LIKE :query)')
+                ->setParameter('query', '%'.$search.'%');
+        } else {
+            $artikelen = $em->createQuery('Select a FROM AppBundle:Artikel a WHERE a.bestelserie > 0');
+        }
+
+        //Verwijzing naar formulier
+        return $this->render('inkoper/voorraad.html.twig', [
+            'artikelen' => $artikelen->getResult(),
+            'q' => $search,
         ]);
 
     }

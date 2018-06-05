@@ -6,28 +6,11 @@
 
     <div class="page-header">
         <div class="container-fluid">
-            {% if status == 0 %}
-                <a class="navbar-brand">Overzicht - Alle artikelen</a>
-                {% elseif status == 1 %}
-                <a class="navbar-brand">Overzicht - In voorraad</a>
-                {% elseif status == 2 %}
-                <a class="navbar-brand">Overzicht - Uit voorraad</a>
-                {% endif %}
-
+            <a class="navbar-brand">Overzicht - Voorraad bestellen</a>
             <p></p>
 
-            {% if status != 0 %}
-                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 0, 'q': q}) }}">Alle artikelen</a>
-            {% endif %}
-            {% if status != 1 %}
-                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 1, 'q': q}) }}">In voorraad</a>
-            {% endif %}
-            {% if status != 2 %}
-                <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 2, 'q': q}) }}">Uit voorraad</a>
-            {% endif %}
-
+            <a class="btn btn-outline-primary" href="{{ url('inkoper', {'status': 0, 'q': q}) }}">Alle artikelen</a>
             <a class="btn btn-outline-primary" href="{{ url('allebestelopdrachten') }}">Bestelopdrachten</a>
-            <a class="btn btn-outline-success" href="{{ url('artikelnieuw') }}"><i class="fas fa-plus"></i> Artikel toevoegen</a>
             <a class="btn btn-outline-success" href="{{ url('bestellingnieuw') }}"><i class="fas fa-plus"></i> Bestelopdracht toevoegen</a>
 
             <br /><br />
@@ -56,7 +39,7 @@
                         <th scope="col">Minimum voorraad</th>
                         <th scope="col">Voorraad aantal</th>
                         <th scope="col">Bestelserie</th>
-                        <th scope="col"></th>
+                        <th scope="col">Al besteld</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -72,14 +55,12 @@
                         <td>{{ artikel.minimumVoorraad }}</td>
                         <td>{{ artikel.voorraadaantal }}</td>
                         <td>{{ artikel.bestelserie }}</td>
-                        <td><a class="btn btn-sm btn-primary" href="{{ path('inkoperartikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzigen</a></td>
                         <td>
-                            {% if artikel.inVoorraad %}
-                                <a class="btn btn-sm btn-danger" href="{{ path('inkoperartikeluitvoorraad', {'status': status, 'artikelnummer':artikel.artikelnummer}) }}">
-                                    <i class="fas fa-angle-right"></i> Uit voorraad
-                                </a>
+                            {% if artikel.bestelregels | length > 0 %}
+                                <i class="fas fa-check-square"></i>
                             {% endif %}
                         </td>
+                        <td><a class="btn btn-sm btn-primary" href="{{ path('inkoperartikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzigen</a></td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -88,14 +69,4 @@
         </div>
         <hr>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {% if alert %}
-        <script>
-            if(confirm('Yow vooraad is leeg mattie. oplossen?')) {
-                window.location.href = '{{ url('inkopervoorraad') }}';
-            }
-        </script>
-    {% endif %}
 {% endblock %}
