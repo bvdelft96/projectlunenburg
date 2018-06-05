@@ -93,7 +93,7 @@
 {% block javascripts %}
     {% if alert %}
         <script>
-            if(confirm('Yow vooraad is leeg mattie. oplossen?')) {
+            if(confirm('Er zijn goederen die besteld moeten worden, wilt u naar het overzicht?')) {
                 window.location.href = '{{ url('inkopervoorraad') }}';
             }
         </script>
