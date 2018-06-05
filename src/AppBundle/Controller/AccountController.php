@@ -116,6 +116,21 @@ class AccountController extends Controller
      * @return Response
      */
     public function verkoperHomepage(Request $request, $status){
+
+        $artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+
+
+        foreach($artikelen as $artikel){
+            if ($artikel->getVerkopen() == null){
+                $artikel->setGereserveerdevoorraad(0);
+                $artikel->setVrijevoorraad($artikel->getVoorraadaantal());
+            } else{
+                $artikel->setGereserveerdevoorraad($artikel->getVerkopen());
+                $artikel->setVrijevoorraad($artikel->getVoorraadaantal() - $artikel->getGereserveerdevoorraad());
+            }
+        }
+
+        
         $search = $request->get('q');
         $em = $this->getDoctrine()->getManager();
 

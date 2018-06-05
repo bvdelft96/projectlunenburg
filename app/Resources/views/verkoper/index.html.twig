@@ -48,8 +48,10 @@
                         <th scope="col">#</th>
                         <th scope="col">Omschrijving</th>
                         <th scope="col">Specificaties</th>
-                        <th scope="col">Minimum voorraad</th>
-                        <th scope="col">Voorraad aantal</th>
+                        <th scope="col">Inkoopprijs</th>
+                        <th scope="col">Technische voorraad</th>
+                        <th scope="col">Gereserveerde voorraad</th>
+                        <th scope="col">Vrije voorraad</th>
                         <th scope="col">Verkopen</th>
                         <th scope="col"></th>
                     </tr>
@@ -60,8 +62,10 @@
                         <th scope="row">{{ artikel.artikelnummer }}</th>
                         <td>{{ artikel.omschrijving }}</td>
                         <td>{{ artikel.specificaties }}</td>
-                        <td>{{ artikel.minimumVoorraad }}</td>
+                        <td>{{ artikel.inkoopprijs }}</td>
                         <td>{{ artikel.voorraadaantal }}</td>
+                        <td>{{ artikel.gereserveerdeVoorraad}}</td>
+                        <td>{{ artikel.vrijeVoorraad }}</td>
                         <td>{{ artikel.verkopen }}</td>
                         <td><a class="btn btn-sm btn-primary" href="{{ path('verkoperartikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Verkopen wijzigen</a></td>
                     </tr>
