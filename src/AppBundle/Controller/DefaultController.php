@@ -32,6 +32,10 @@ class DefaultController extends Controller
         {
             return $this->redirectToRoute('verkoper');
         }
+        else if ($authorizationChecker->isGranted(new Expression('"ROLE_ADMIN" in roles')))
+        {
+            return $this->redirectToRoute('admin');
+        }
         else
         {
             return $this->render('default/index.html.twig');

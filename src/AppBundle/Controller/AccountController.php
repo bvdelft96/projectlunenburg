@@ -107,7 +107,7 @@ class AccountController extends Controller
         ]);
     }
 
-    //Functie om naar de homepagina van de magazijnmeester te gaan.
+    //Functie om naar de homepagina van de verkoper te gaan.
 
     /**
      * @Route ("/verkoper/{status}", defaults={"status"=1}, name="verkoper")
@@ -130,7 +130,7 @@ class AccountController extends Controller
             }
         }
 
-        
+
         $search = $request->get('q');
         $em = $this->getDoctrine()->getManager();
 
@@ -158,6 +158,24 @@ class AccountController extends Controller
             'status' => $status,
             'q' => $search
         ]);
+
+    }
+
+
+    //Functie om naar de homepagina van de admin te gaan.
+
+    /**
+     * @Route ("/admin", name="admin")
+     *
+     */
+    public function adminHomepage(Request $request){
+
+        $users = $this->getDoctrine()->getRepository("AppBundle:User")->findAll();
+
+
+        //Verwijzing naar formulier
+
+        return new Response($this->render('admin/index.html.twig', array('users' => $users)));
 
     }
 }

@@ -9,11 +9,14 @@
         {% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
                 <a class="navbar-brand" style="color:gray">Magazijnmeester</a>
 
-
-                
+        
 
         {% elseif is_granted(expression('"ROLE_VERKOPER" in roles')) %}
                 <a class="navbar-brand" style="color:gray">Verkoper</a>
+
+        {% elseif is_granted(expression('"ROLE_ADMIN" in roles')) %}
+                <a class="navbar-brand" style="color:gray">Admin</a>
+                <a class="navbar-item" style="color:white" href="{{ url('user_registration') }}">Registratie</a>
 
 
         {% endif %}

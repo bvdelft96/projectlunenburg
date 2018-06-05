@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class RegistrationController extends Controller
 {
     /**
-     * @Route("/register", name="user_registration")
+     * @Route("/admin/register", name="user_registration")
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -36,10 +36,44 @@ class RegistrationController extends Controller
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render(
             'registration/register.html.twig', array('form' => $form->createView()) );
     }
+
+    //Functie om een artikel te wijzigen door de inkoper
+
+    /** 
+    * @Route ("/admin/user/wijzigen/{id} ", name="userwijzigen")
+    */
+    public function wijzigInkoperartikel(Request $request, $id){
+        $bestaandeUser = $this->getDoctrine()->getRepository("AppBundle:User")->find($id);
+        $form = $this->createForm(UserType::class, $bestaandeUser);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            //Functie om bestelserie te berekenen
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($bestaandeUser);
+            $em->flush();
+            //Verwijziging naar de pagina inkoper
+            return $this->redirectToRoute('admin');
+        }
+
+        //Verwijzing naar formulier
+        return $this->render('form.html.twig', [
+            'form' => $form->createView(),
+            'title' => 'Gebruiker wijzigen',
+        ]);
+    }
+
+
+
+
+
+
+
+
 }
