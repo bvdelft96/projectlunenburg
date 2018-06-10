@@ -4,36 +4,23 @@
 
 {% block content %}
 
-    <div class="page-header">
-        <div class="container-fluid">
+<style>
+.zoekformulier{
 
-            {% if status == 0 %}
-                <a class="navbar-brand">Overzicht - Alle artikelen</a>
-                {% elseif status == 1 %}
-                <a class="navbar-brand">Overzicht - In voorraad</a>
-                {% elseif status == 2 %}
-                <a class="navbar-brand">Overzicht - Uit voorraad</a>
-                {% endif %}
-
-            <p></p>
-
-            {% if status != 0 %}
-                <a class="btn btn-outline-primary" href="{{ url('magazijnmeester', {'status': 0, 'q': q}) }}">Alle artikelen</a>
-            {% endif %}
-            {% if status != 1 %}
-                <a class="btn btn-outline-primary" href="{{ url('magazijnmeester', {'status': 1, 'q': q}) }}">In voorraad</a>
-            {% endif %}
-            {% if status != 2 %}
-                <a class="btn btn-outline-primary" href="{{ url('magazijnmeester', {'status': 2, 'q': q}) }}">Uit voorraad</a>
-            {% endif %}
+margin-left: 20px;
+margin-top: 30px;
+}
 
 
-            <br /><br />
+</style>
 
-            <form>
-                <input name="q" value="{{ q }}" placeholder="Zoeken" />
-                <button type="submit">Zoeken</button>
-            </form>
+
+<div class= "zoekformulier">
+<form>
+<input name="q" value="{{ q }}" placeholder="Zoeken" />
+<button type="submit">Zoeken</button>
+</form>
+</div>
 
             <br />
         </div>

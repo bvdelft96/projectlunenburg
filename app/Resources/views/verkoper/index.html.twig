@@ -4,40 +4,26 @@
 
 {% block content %}
 
-    <div class="page-header">
-        <div class="container-fluid">
+<style>
 
-            {% if status == 0 %}
-                <a class="navbar-brand">Overzicht - Alle artikelen</a>
-                {% elseif status == 1 %}
-                <a class="navbar-brand">Overzicht - In voorraad</a>
-                {% elseif status == 2 %}
-                <a class="navbar-brand">Overzicht - Uit voorraad</a>
-                {% endif %}
+.zoekformulier{
 
-            <p></p>
-
-            {% if status != 0 %}
-                <a class="btn btn-outline-primary" href="{{ url('verkoper', {'status': 0, 'q': q}) }}">Alle artikelen</a>
-            {% endif %}
-            {% if status != 1 %}
-                <a class="btn btn-outline-primary" href="{{ url('verkoper', {'status': 1, 'q': q}) }}">In voorraad</a>
-            {% endif %}
-            {% if status != 2 %}
-                <a class="btn btn-outline-primary" href="{{ url('verkoper', {'status': 2, 'q': q}) }}">Uit voorraad</a>
-            {% endif %}
+padding: 20px;
+margin-top: 20 px;
 
 
-            <br /><br />
+}
 
-            <form>
-                <input name="q" value="{{ q }}" placeholder="Zoeken" />
-                <button type="submit">Zoeken</button>
-            </form>
 
-            <br />
-        </div>
-    </div>
+</style>
+
+
+<div class= "zoekformulier">
+<form>
+<input name="q" value="{{ q }}" placeholder="Zoeken" />
+<button type="submit">Zoeken</button>
+</form>
+</div>
 
     <div class="container-fluid">
         <div class="row">
