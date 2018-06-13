@@ -17,6 +17,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, \Serializable
 {
+
+    //Mapping naar database.
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

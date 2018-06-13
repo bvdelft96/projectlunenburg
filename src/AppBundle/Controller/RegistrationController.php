@@ -11,6 +11,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends Controller
 {
+
+    //Functie om een gebruiker te registreren.
+
     /**
      * @Route("/admin/register", name="user_registration")
      */
@@ -43,7 +46,7 @@ class RegistrationController extends Controller
             'registration/register.html.twig', array('form' => $form->createView()) );
     }
 
-    //Functie om een artikel te wijzigen door de inkoper
+    //Functie om een gebruiker te wijzigen als admin
 
     /** 
     * @Route ("/admin/user/wijzigen/{id} ", name="userwijzigen")
@@ -54,11 +57,10 @@ class RegistrationController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //Functie om bestelserie te berekenen
             $em = $this->getDoctrine()->getManager();
             $em->persist($bestaandeUser);
             $em->flush();
-            //Verwijziging naar de pagina inkoper
+            //Verwijziging naar de pagina admin
             return $this->redirectToRoute('admin');
         }
 

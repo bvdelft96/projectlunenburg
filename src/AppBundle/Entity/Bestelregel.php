@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Bestelregel
 {
+
+    //Mapping naar database.
+
     /**
      * @var int
      *

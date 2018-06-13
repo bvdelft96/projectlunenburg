@@ -12,6 +12,9 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class SecurityController extends Controller
 {
+
+    //Functie om in te kunnen loggen.
+
     /**
      * @Route("/login", name="login")
      */
@@ -23,6 +26,8 @@ class SecurityController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
+
+        //Verwijzing naar de login pagina.
         return $this->render('security/login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,

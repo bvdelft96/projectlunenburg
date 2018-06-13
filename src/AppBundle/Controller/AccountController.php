@@ -17,7 +17,7 @@ use AppBundle\Form\Type\ArtikelVerkoperType;
 class AccountController extends Controller
 {
 
-    //Functie om naar de homepagina van de inkoper te gaan.
+    //Functie om naar de in assortiment/ uit assortiment/ alle artikelen van de inkoper te gaan.
 
     /**
      * @Route ("/inkoper/{status}", defaults={"status"=1}, name="inkoper")
@@ -29,6 +29,8 @@ class AccountController extends Controller
 
         $search = $request->get('q');
         $em = $this->getDoctrine()->getManager();
+
+        //Statement om te kijken wat de status is van een artikel.
 
         if($status != 0) {
             if ($search) {
@@ -57,6 +59,8 @@ class AccountController extends Controller
 
     }
 
+    //Functie om naar de homepagina van de inkoper te gaan.
+
     /**
      * @Route ("/inkoper2", name="inkoper2")
      *
@@ -77,6 +81,8 @@ class AccountController extends Controller
         ]);
 
     }
+
+    //Functie om naar te bestellen voorraad te gaan.
 
     /**
      * @Route ("/inkoper/voorraad/bestellen", name="inkopervoorraad")

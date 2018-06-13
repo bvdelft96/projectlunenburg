@@ -33,7 +33,7 @@ class ArtikelController extends Controller
         return $this->redirectToRoute('inkoper', ['status' => $status]);
     }
 
-    //Functie om als inkoper een artikel te kunnen verwijderen.
+    //Functie om als inkoper een artikel te kunnen terug te kunnen zetten.
 
     /**
      * @Route ("/inkoper/artikel/terugzetten/{status}/{artikelnummer}", name="inkoperartikelinvoorraad")
@@ -49,7 +49,7 @@ class ArtikelController extends Controller
         return $this->redirectToRoute('inkoper', ['status' => $status]);
     }
 
-    //Functie om als inkoper een artikel te kunnen verwijderen.
+    //Functie om als magazijnmeester een artikel te kunnen verwijderen.
 
     /**
      * @Route ("/magazijnmeester/artikel/verwijder/{status}/{artikelnummer}", name="magazijnmeesterartikeluitvoorraad")

@@ -17,6 +17,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Bestelling
 {
 
+    //Mapping naar database.
+
     /**
      * @var int
      *
