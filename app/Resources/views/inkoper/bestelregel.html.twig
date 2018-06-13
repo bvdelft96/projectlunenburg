@@ -4,7 +4,9 @@
 
 {% block content %}
 
-
+    <div>
+        <p></p>
+    </div>
 
     <div class="container-fluid">
         <div class="row">
@@ -19,6 +21,7 @@
                         <th scope="col">Leverancier</th>
                         <th scope="col">Magazijnlocatie</th>
                         <th scope="col">Keuringseisen</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -32,6 +35,8 @@
                             <td>{{ bestelling.leverancier }}</td>
                             <td>{{ bestelregel.artikel.magazijnlocatie }}</td>
                             <td>{{ bestelling.keuringseisen }}</td>
+                            <td><a class="btn btn-sm btn-primary" href="{{ path('bestellingwijzigen', {'bestelling':bestelling.bestelordernummer}) }}">Wijzigen</a></td>
+                        <td>
                         </tr>
                         {% endfor %}
                     {% endfor %}

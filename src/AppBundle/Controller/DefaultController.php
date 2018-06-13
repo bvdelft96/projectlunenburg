@@ -22,7 +22,7 @@ class DefaultController extends Controller
     {
         if ($authorizationChecker->isGranted(new Expression('"ROLE_INKOPER" in roles')))
         {
-            return $this->redirectToRoute('inkoper');
+            return $this->redirectToRoute('inkoper2');
         }
         else if ($authorizationChecker->isGranted(new Expression('"ROLE_MAGAZIJNMEESTER" in roles')))
         {

@@ -36,6 +36,22 @@ class ArtikelController extends Controller
     //Functie om als inkoper een artikel te kunnen verwijderen.
 
     /**
+     * @Route ("/inkoper/artikel/terugzetten/{status}/{artikelnummer}", name="inkoperartikelinvoorraad")
+     */
+    public function inkoperartikelinvoorraad($status, $artikelnummer) {
+        $bestaandeArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->find($artikelnummer);
+        $bestaandeArtikel->setInVoorraad(true);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($bestaandeArtikel);
+        $em->flush();
+
+        return $this->redirectToRoute('inkoper', ['status' => $status]);
+    }
+
+    //Functie om als inkoper een artikel te kunnen verwijderen.
+
+    /**
      * @Route ("/magazijnmeester/artikel/verwijder/{status}/{artikelnummer}", name="magazijnmeesterartikeluitvoorraad")
      */
     public function magazijnmeesterartikeluitvoorraad($status, $artikelnummer) {

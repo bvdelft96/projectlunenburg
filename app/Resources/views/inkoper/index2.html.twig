@@ -4,19 +4,6 @@
 
 {% block content %}
 
-    <div class="page-header">
-        <div class="container-fluid">
-            <p></p>
-
-
-            <form>
-                <input name="q" value="{{ q }}" placeholder="Zoeken" />
-                <button type="submit">Zoeken</button>
-            </form>
-
-            <br />
-        </div>
-    </div>
 
     <div class="container-fluid">
         <div class="row">
@@ -29,10 +16,11 @@
                         <th scope="col">Specificaties</th>
                         <th scope="col">Magazijnlocatie</th>
                         <th scope="col">Inkoopprijs</th>
+                        <th scope="col">Vervangend artikel</th>
                         <th scope="col">Minimum voorraad</th>
                         <th scope="col">Voorraad aantal</th>
                         <th scope="col">Bestelserie</th>
-                        <th scope="col">Al besteld</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -44,14 +32,10 @@
                         <td>{{ artikel.specificaties }}</td>
                         <td>{{ artikel.magazijnlocatie }}</td>
                         <td>{{ artikel.inkoopprijs }}</td>
+                        <td>{{ artikel.vervangendArtikel }}</td>
                         <td>{{ artikel.minimumVoorraad }}</td>
                         <td>{{ artikel.voorraadaantal }}</td>
                         <td>{{ artikel.bestelserie }}</td>
-                        <td>
-                            {% if artikel.bestelregels | length > 0 %}
-                                <i class="fas fa-check-square"></i>
-                            {% endif %}
-                        </td>
                         <td><a class="btn btn-sm btn-primary" href="{{ path('inkoperartikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzigen</a></td>
                     </tr>
                     {% endfor %}
@@ -61,4 +45,14 @@
         </div>
         <hr>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% if alert %}
+        <script>
+            if(confirm('Er zijn goederen die besteld moeten worden, wilt u naar het overzicht?')) {
+                window.location.href = '{{ url('inkopervoorraad') }}';
+            }
+        </script>
+    {% endif %}
 {% endblock %}

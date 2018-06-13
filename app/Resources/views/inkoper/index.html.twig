@@ -61,7 +61,11 @@
                         <td>
                             {% if artikel.inVoorraad %}
                                 <a class="btn btn-sm btn-danger" href="{{ path('inkoperartikeluitvoorraad', {'status': status, 'artikelnummer':artikel.artikelnummer}) }}">
-                                    <i class="fas fa-angle-right"></i> Uit voorraad
+                                    <i class="fas fa-angle-right"></i> Uit assortiment
+                                </a>
+                            {% else %}
+                                <a class="btn btn-sm btn-success" href="{{ path('inkoperartikelinvoorraad', {'status': status, 'artikelnummer':artikel.artikelnummer}) }}">
+                                    <i class="fas fa-angle-right"></i> In assortiment
                                 </a>
                             {% endif %}
                         </td>
@@ -73,14 +77,4 @@
         </div>
         <hr>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {% if alert %}
-        <script>
-            if(confirm('Er zijn goederen die besteld moeten worden, wilt u naar het overzicht?')) {
-                window.location.href = '{{ url('inkopervoorraad') }}';
-            }
-        </script>
-    {% endif %}
 {% endblock %}

@@ -48,13 +48,31 @@ class AccountController extends Controller
             }
         }
 
-        $alert = count($em->createQuery('Select a FROM AppBundle:Artikel a WHERE a.bestelserie > 0')->setMaxResults(1)->getResult()) != 0;
-
         //Verwijzing naar formulier
         return $this->render('inkoper/index.html.twig', [
             'artikelen' => $artikelen->getResult(),
             'status' => $status,
             'q' => $search,
+        ]);
+
+    }
+
+    /**
+     * @Route ("/inkoper2", name="inkoper2")
+     *
+     * @return Response
+     */
+    public function inkoperAlert(Request $request){
+
+        $artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+        $em = $this->getDoctrine()->getManager();
+
+
+        $alert = count($em->createQuery('Select a FROM AppBundle:Artikel a WHERE a.bestelserie > 0')->setMaxResults(1)->getResult()) != 0;
+
+        //Verwijzing naar formulier
+        return $this->render('inkoper/index2.html.twig', [
+            'artikelen' => $artikelen,
             'alert' => $alert,
         ]);
 
@@ -88,7 +106,7 @@ class AccountController extends Controller
     //Functie om naar de homepagina van de magazijnmeester te gaan.
 
     /**
-     * @Route ("/magazijnmeester{status}", defaults={"status"=1}, name="magazijnmeester")
+     * @Route ("/magazijnmeester/{status}", defaults={"status"=1}, name="magazijnmeester")
      * @param $status 0 = alle, 1 = in voorraad, 2 = uit voorraad
      * @return Response
      */
@@ -203,7 +221,7 @@ class AccountController extends Controller
 
         //Verwijzing naar formulier
 
-        return new Response($this->render('admin/index.html.twig', array('users' => $users)));
+        return new Response($this->renderView('admin/index.html.twig', array('users' => $users)));
 
     }
 }

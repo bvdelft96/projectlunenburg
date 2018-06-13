@@ -14,16 +14,23 @@
                     {{ form_row(form.bestelordernummer) }}
                     {{ form_row(form.leverancier) }}
                     {{ form_row(form.keuringseisen) }}
-
                     {{ form_label(form.bestelregels) }}
-
                     <ul id="bestelregels-fields-list"
                         data-prototype="{{ form_widget(form.bestelregels.vars.prototype)|e }}"
                         data-widget-tags="{{ '<li></li>'|e }}">
                         {% for bestelregelField in form.bestelregels %}
                             <li>
-                                {{ form_errors(bestelregelField) }}
-                                {{ form_widget(bestelregelField) }}
+                                
+                                <div class="row">
+                                     <div class="col-md-8">
+                                         {{ form_widget(bestelregelField.artikel) }}
+                                         {{ form_errors(bestelregelField.artikel) }}
+                                     </div>
+                                     <div class="col-md-4">
+                                         {{ form_widget(bestelregelField.aantal) }}
+                                         {{ form_errors(bestelregelField.artikel) }}
+                                     </div>
+                                </div>
                             </li>
                         {% endfor %}
                     </ul>

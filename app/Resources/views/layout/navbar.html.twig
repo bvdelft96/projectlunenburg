@@ -1,3 +1,4 @@
+<html>
 <style>
 
 
@@ -5,7 +6,7 @@
 .dropbtn {
     background-color: #343A40;
     color: white;
-    padding: 16px;
+    padding: 8px;
     font-size: 16px;
     border: none;
 }
@@ -59,57 +60,98 @@ color: red;
 }
 </style>
 
+{% block content %}
 
-<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if is_granted(expression('"ROLE_INKOPER" in roles')) %}
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <div class="dropdown">
-    <button class="dropbtn">Inkoper</button>
+    <button class="dropbtn">Artikel</button>
     <div class="dropdown-content">
 
-          <a href="http://localhost/projectlunenburg/web/app_dev.php/inkoper/alle">Alle artikelen</a>
+          <a href="http://localhost/projectlunenburg/web/app_dev.php/inkoper/0">Alle artikelen</a>
+          <a href="{{ url('inkoper')}}">In assortiment</a>
+          <a href="http://localhost/projectlunenburg/web/app_dev.php/inkoper/2">Uit assortiment</a>
+          <a href="{{ url('inkopervoorraad')}}">Te bestellen goederen</a>
           <a href="{{ url('artikelnieuw') }}"> Artikel toevoegen</a>
+
+
+
+    </div>
+    </div>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="dropdown">
+    <button class="dropbtn">Bestelopdracht</button>
+    <div class="dropdown-content">
+
           <a href="{{ url('allebestelopdrachten') }}">Bestelopdrachten</a>
           <a href="{{ url('bestellingnieuw') }}"> Bestelopdracht toevoegen</a>
-          <a href="{{ url('inkoper')}}">In voorraad</a>
-          <a href="http://localhost/projectlunenburg/web/app_dev.php/inkoper/voorraad/bestellen">Uit voorraad</a>
+
 
 
 
     </div>
-    {% endif %}
-</div>
-
-<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    </div>
+    </div>
+    {% elseif is_granted(expression('"ROLE_MAGAZIJNMEESTER" in roles')) %}
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <div class="dropdown">
-    <button class="dropbtn">verkoper</button>
+    <button class="dropbtn">Artikel</button>
     <div class="dropdown-content">
 
-    <a href="http://localhost/projectlunenburg/web/app_dev.php/verkoper/alle">Alle artikelen</a>
-    <a href="{{ url('verkoper') }}">In voorraad</a>
-    <a href="http://localhost/projectlunenburg/web/app_dev.php/verkoper/2">Uit voorraad</a>
+    <a href="http://localhost/projectlunenburg/web/app_dev.php/magazijnmeester/0">Alle artikelen</a>
+    <a href="{{ url('magazijnmeester') }}">In assortiment</a>
+    <a href="http://localhost/projectlunenburg/web/app_dev.php/magazijnmeester/2">Uit assortiment</a>
 
 
     </div>
-    {% endif %}
-</div>
+    </div>
+    </div>
 
-<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% elseif is_granted(expression('"ROLE_VERKOPER" in roles')) %}
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <div class="dropdown">
-    <button class="dropbtn">magazijnmeester</button>
+    <button class="dropbtn">Artikel</button>
     <div class="dropdown-content">
 
-    <a href="http://localhost/projectlunenburg/web/app_dev.php/magazijnmeester0">Alle artikelen</a>
-    <a href="http://localhost/projectlunenburg/web/app_dev.php/magazijnmeester">In voorraad</a>
-    <a href="http://localhost/projectlunenburg/web/app_dev.php/magazijnmeester2">Uit voorraad</a>
+    <a href="http://localhost/projectlunenburg/web/app_dev.php/verkoper/0">Alle artikelen</a>
+    <a href="http://localhost/projectlunenburg/web/app_dev.php/verkoper">In assortiment</a>
+    <a href="http://localhost/projectlunenburg/web/app_dev.php/verkoper/2">Uit assortiment</a>
 
 
 
     </div>
+    </div>
+    </div>
+
+    {% elseif is_granted(expression('"ROLE_ADMIN" in roles')) %}
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="dropdown">
+    <button class="dropbtn">Gebruiker</button>
+    <div class="dropdown-content">
+
+    <a href="{{ url('user_registration') }}">Registratie</a>
+
+
+    </div>
+    </div>
+    </div>
+
     {% endif %}
-</div>
 
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <div class="my-2 my-lg-0">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('security_logout') }}" >Uitloggen</a>
+            </li>
+        </ul>
+    </div>
 
-
-<a class="nav-link" href="{{ url('security_logout') }}">Uitloggen</a>
+    {% endif %}
+</html>
+{% endblock %}
